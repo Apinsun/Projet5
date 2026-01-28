@@ -24,4 +24,7 @@ jobs:
 
       # C'est cette commande qui va lancer tests/test_api.py
       - name: Run tests
-        run: poetry run pytest
+        # On dit à Python : "Rajoute le dossier courant (.) à ta liste de recherche"
+        run: |
+          export PYTHONPATH=$PYTHONPATH:.
+          poetry run pytest

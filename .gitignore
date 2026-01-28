@@ -1,0 +1,12 @@
+# Ignorer les fichiers Python compilés
+__pycache__/
+*.pyc
+
+# Ignorer les environnements virtuels (si tu n'es pas dans poetry shell)
+.venv/
+env/
+
+# --- IGNORER LE MODÈLE ---
+*.pkl
+*.joblib
+models/

@@ -12,13 +12,14 @@ from ydata_profiling import ProfileReport
 from sklearn.calibration import cross_val_predict
 from sklearn.preprocessing import KBinsDiscretizer
 from sklearn.model_selection import GridSearchCV
+from sklearn.preprocessing import KBinsDiscretizer
 import joblib
 from model_With_Threshold import ModelWithThreshold
 from pathlib import Path
 ### Mes fonctions ###
 
 # Crée une colonne indiquant si la personne a des études en adéquation avec son département
-from sklearn.metrics import precision_recall_curve
+from sklearn.metrics import classification_report, f1_score, precision_recall_curve
 
 
 def definir_match_etudes_poste(row):
@@ -327,6 +328,7 @@ class ColumnDropperTransformer(BaseEstimator, TransformerMixin):
 current_dir = Path(__file__).resolve().parent
 project_root = current_dir.parent
 models_dir = project_root / "models"
+artifacts_dir = project_root / "artifacts"
 
 ### Chargement des données ###
     
@@ -359,11 +361,9 @@ df_clean = df_clean.drop(columns=['age', 'note_evaluation_actuelle','niveau_hier
 
 
 profile = ProfileReport(df_clean, title="Rapport d'Exploration du data frame final")
-profile.to_file("../artifacts/rapport_final.html")
+profile.to_file(artifacts_dir / "rapport_final.html")
 
 # 1. Préparation du train test
-#from category_encoders import TargetEncoder
-from sklearn.preprocessing import KBinsDiscretizer
 
 
 X = df_clean.drop(columns=['a_quitte_l_entreprise'])
@@ -492,6 +492,14 @@ y_probas_test = best_model.predict_proba(X_test)[:, 1]
 
 # 4. Appliquer le seuil trouvé précédemment pour créer les prédictions finales
 y_pred_test_optimized = (y_probas_test >= best_threshold).astype(int)
+
+f1_final = f1_score(y_test, y_pred_test_optimized)
+print(f"🎯 F1 Score Final (Test) : {f1_final:.4f}")
+
+# 2. Afficher le rapport complet (Précision, Rappel, Support)
+# C'est très utile pour voir si ton modèle privilégie trop une classe
+print("\n📊 Rapport de Classification :")
+print(classification_report(y_test, y_pred_test_optimized))
 
 # 2. Créer l'objet final
 final_model = ModelWithThreshold(best_model, best_threshold)

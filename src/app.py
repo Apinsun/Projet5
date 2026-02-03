@@ -3,10 +3,21 @@ from pydantic import BaseModel, Field
 import joblib
 import pandas as pd
 import os
-from model_With_Threshold import ModelWithThreshold
 from pathlib import Path
-from preprocessing import DataCleaningTransformer, FeatureEngineeringTransformer, ColumnDropperTransformer, SalaryFeatureEngineering
+import sys  # <--- Ajoute cet import
+
+# --- AJOUT CRUCIAL POUR LE CI/CD ---
+# Cela dit à Python : "Regarde aussi dans le dossier où se trouve ce fichier (app.py)"
+# Peu importe d'où on lance la commande (root, tests, etc.), il trouvera les voisins.
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 app = FastAPI()
+
+try:
+    # Maintenant ça marchera même depuis les tests GitHub
+    from model_With_Threshold import ModelWithThreshold
+    from preprocessing import DataCleaningTransformer, FeatureEngineeringTransformer, ColumnDropperTransformer, SalaryFeatureEngineering
+except ImportError as e:
+    print(f"ERREUR D'IMPORT : {e}")
 
 from enum import Enum
 from typing import Literal

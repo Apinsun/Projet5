@@ -1,6 +1,5 @@
 from sklearn.base import BaseEstimator, ClassifierMixin
 
-
 class ModelWithThreshold(BaseEstimator, ClassifierMixin):
     def __init__(self, model, threshold):
         self.model = model

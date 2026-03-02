@@ -1,0 +1,30 @@
+name: CI API ML
+
+on:
+  push:
+    branches: [ "main", "feature/*" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install dependencies
+        run: poetry install
+
+      # C'est cette commande qui va lancer tests/test_api.py
+      - name: Run tests
+        # On dit à Python : "Rajoute le dossier courant (.) à ta liste de recherche"
+        run: |
+          export PYTHONPATH=$PYTHONPATH:.
+          poetry run pytest

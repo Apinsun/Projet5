@@ -10,3 +10,6 @@ env/
 *.pkl
 *.joblib
 models/
+
+# --- IGNORER LE .env ---
+.env

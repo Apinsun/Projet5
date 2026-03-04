@@ -20,7 +20,10 @@ dependencies = [
     
     # ydata exige Numpy < 2.4
     "numpy (>=1.26.0,<2.4.0)",
-    "setuptools (>=80.10.2,<81.0.0)"
+    "setuptools (>=80.10.2,<81.0.0)",
+    "sqlalchemy (>=2.0.48,<3.0.0)",
+    "psycopg2-binary (>=2.9.11,<3.0.0)",
+    "python-dotenv (>=1.2.2,<2.0.0)"
 ]
 
 

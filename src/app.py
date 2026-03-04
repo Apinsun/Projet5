@@ -1,16 +1,53 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 import joblib
 import pandas as pd
 import os
 from pathlib import Path
 import sys  # <--- Ajoute cet import
 
+from sqlalchemy import create_engine, Column, Integer, Float, DateTime, JSON
+from sqlalchemy.orm import sessionmaker, declarative_base, Session
+from fastapi import Depends
+from dotenv import load_dotenv
+from datetime import datetime, timezone
+
+
 # --- AJOUT CRUCIAL POUR LE CI/CD ---
 # Cela dit à Python : "Regarde aussi dans le dossier où se trouve ce fichier (app.py)"
 # Peu importe d'où on lance la commande (root, tests, etc.), il trouvera les voisins.
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 app = FastAPI()
+
+# --- CONFIGURATION BDD ---
+load_dotenv()
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+# On prépare SQLAlchemy seulement si on a une URL (évite de faire planter les tests sans .env)
+if DATABASE_URL:
+    engine = create_engine(DATABASE_URL)
+    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+    Base = declarative_base()
+
+    # Définition de notre table de logs
+    class PredictionLog(Base):
+        __tablename__ = "prediction_logs"
+        id = Column(Integer, primary_key=True, index=True)
+        timestamp = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+        input_data = Column(JSON)
+        prediction_result = Column(Integer)
+        prediction_probability = Column(Float)
+
+# Fonction pour fournir une session BDD à chaque requête (Injection de dépendance)
+def get_db():
+    if not DATABASE_URL:
+        yield None
+        return
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 try:
     # Maintenant ça marchera même depuis les tests GitHub
@@ -75,7 +112,7 @@ class EmployeeInput(BaseModel):
     frequence_deplacement: Literal['Occasionnel','Frequent','Aucun']
 
 # Configuration pour la documentation automatique (Swagger UI)
-    class Config:
+    model_config = ConfigDict(
         json_schema_extra = {
             "example": {
                 # --- Notes (doivent être <= 4) ---
@@ -113,6 +150,7 @@ class EmployeeInput(BaseModel):
                 "frequence_deplacement": "Occasionnel"
             }
         }
+    )
 
 # 2. Chargement du modèle (Global)
 # On essaie de charger le vrai modèle, sinon on met None (pour ne pas crasher au démarrage)
@@ -131,24 +169,40 @@ def read_root():
 
 # 3. Endpoint de prédiction
 @app.post("/predict")
-def predict(input_data: EmployeeInput):
+def predict(input_data: EmployeeInput, db: Session = Depends(get_db)):
     global model
     
-    # Sécurité : Si le modèle n'est pas là (et qu'on n'est pas en test mocké)
+    # Sécurité 1 : Le modèle est-il chargé ?
     if model is None:
         raise HTTPException(status_code=503, detail="Modèle non disponible (Fichier manquant)")
 
-    # Conversion Pydantic -> DataFrame
+    # Sécurité 2 : Faire la prédiction (Si une donnée échappe à Pydantic et fait planter le modèle)
     data_df = pd.DataFrame([input_data.model_dump()])
-    
-    # Prédiction
     try:
-        prediction = model.predict(data_df)[0]
-        probabilite = model.predict_proba(data_df)[0][1]
-        return {
-            "prediction": int(prediction),
-            "probabilite_depart": float(probabilite),
-            "seuil_utilise": float(model.threshold) # On peut même renvoyer le seuil pour info
-        }
+        prediction = int(model.predict(data_df)[0])
+        probabilite = float(model.predict_proba(data_df)[0][1])
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=f"Erreur interne du modèle lors de la prédiction : {str(e)}")
+
+    # Sécurité 3 : Sauvegarde dans la BDD
+    # Le projet exige une traçabilité totale, donc si la BDD plante, on le signale en erreur 500
+    if db is not None:
+        try:
+            log_entry = PredictionLog(
+                input_data=input_data.model_dump(),
+                prediction_result=prediction,
+                prediction_probability=probabilite
+            )
+            db.add(log_entry)
+            db.commit() # On valide l'écriture
+        except Exception as e:
+            db.rollback() # En cas d'erreur, on annule pour ne pas corrompre la BDD
+            print(f"Erreur BDD: {str(e)}")
+            raise HTTPException(status_code=500, detail="La prédiction a réussi mais l'enregistrement en BDD a échoué.")
+
+    # 4. Retour du résultat final
+    return {
+        "prediction": prediction,
+        "probabilite_depart": probabilite,
+        "seuil_utilise": float(model.threshold) if hasattr(model, 'threshold') else 0.5
+    }

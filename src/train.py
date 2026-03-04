@@ -97,6 +97,9 @@ df_clean = df_clean.drop(columns=['age', 'note_evaluation_actuelle','niveau_hier
 profile = ProfileReport(df_clean, title="Rapport d'Exploration du data frame final")
 profile.to_file(artifacts_dir / "rapport_final.html")
 
+# on enregistre le .csv final
+df_clean.to_csv(artifacts_dir / "df_final.csv", index=False)    
+
 # Affichage des spécifications des colonnes pour notre API
 
 

@@ -23,20 +23,22 @@ app = FastAPI()
 load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
 
+# On déclare TOUJOURS le modèle de la table, avec ou sans connexion (pour éviter une erreur de github)!
+Base = declarative_base()
+
+# Définition de notre table de logs
+class PredictionLog(Base):
+    __tablename__ = "prediction_logs"
+    id = Column(Integer, primary_key=True, index=True)
+    timestamp = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    input_data = Column(JSON)
+    prediction_result = Column(Integer)
+    prediction_probability = Column(Float)
+
 # On prépare SQLAlchemy seulement si on a une URL (évite de faire planter les tests sans .env)
 if DATABASE_URL:
     engine = create_engine(DATABASE_URL)
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-    Base = declarative_base()
-
-    # Définition de notre table de logs
-    class PredictionLog(Base):
-        __tablename__ = "prediction_logs"
-        id = Column(Integer, primary_key=True, index=True)
-        timestamp = Column(DateTime, default=lambda: datetime.now(timezone.utc))
-        input_data = Column(JSON)
-        prediction_result = Column(Integer)
-        prediction_probability = Column(Float)
 
 # Fonction pour fournir une session BDD à chaque requête (Injection de dépendance)
 def get_db():

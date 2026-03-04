@@ -6,10 +6,5 @@ __pycache__/
 .venv/
 env/
 
-# --- IGNORER LE MODÈLE ---
-*.pkl
-*.joblib
-models/
-
 # --- IGNORER LE .env ---
 .env

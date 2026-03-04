@@ -198,9 +198,11 @@ def predict(input_data: EmployeeInput, db: Session = Depends(get_db)):
             db.add(log_entry)
             db.commit() # On valide l'écriture
         except Exception as e:
-            db.rollback() # En cas d'erreur, on annule pour ne pas corrompre la BDD
-            print(f"Erreur BDD: {str(e)}")
-            raise HTTPException(status_code=500, detail="La prédiction a réussi mais l'enregistrement en BDD a échoué.")
+            db.rollback()
+            # On affiche l'erreur RÉELLE dans les logs ET dans le retour API (Swagger)
+            error_msg = f"Erreur BDD précise : {str(e)}"
+            print(error_msg, flush=True) 
+            raise HTTPException(status_code=500, detail=error_msg)
 
     # 4. Retour du résultat final
     return {

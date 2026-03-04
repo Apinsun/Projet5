@@ -28,7 +28,7 @@ COPY --chown=user:user pyproject.toml poetry.lock* ./
 # On dit à Poetry de ne pas créer de venv et on force l'installation 
 # dans le dossier utilisateur avec 'pip install' piloté par Poetry
 RUN poetry config virtualenvs.create false \
-    && poetry install --no-cache-dir --without dev,test --no-root
+    && poetry install --without dev,test --no-root
 
 # 7. Copier le reste du code (src, models, etc.)
 COPY --chown=user:user . .

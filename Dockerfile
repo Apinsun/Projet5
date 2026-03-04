@@ -22,6 +22,9 @@ RUN pip install --user --no-cache-dir poetry
 # (Cela permet à Docker de mettre en cache cette étape si les dépendances ne changent pas)
 COPY --chown=user:user pyproject.toml poetry.lock ./
 
+# Force Poetry à créer le venv dans le dossier du projet (.venv)
+RUN poetry config virtualenvs.in-project true
+
 # 7. Installer UNIQUEMENT les dépendances de production (API)
 # On exclut Ydata-profiling, pytest, etc., pour avoir une image toute légère !
 RUN poetry install --without dev,test --no-root

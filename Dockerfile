@@ -1,41 +1,40 @@
-# 1. Utiliser une image Python officielle, légère et correspondante à notre projet
+# 1. Utiliser une image Python officielle légère
 FROM python:3.12-slim
 
-# 2. Variables d'environnement pour optimiser Python et Poetry
-ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1 \
-    POETRY_VIRTUALENVS_CREATE=false \
-    POETRY_NO_INTERACTION=1
+# 2. Installation des dépendances système nécessaires pour psycopg2 (PostgreSQL)
+# Sans 'gcc' et 'libpq-dev', l'installation de SQLAlchemy/psycopg2 échouera
+USER root
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libpq-dev \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-# 3. Spécifique à Hugging Face : Créer un utilisateur non-root (UID 1000)
+# 3. Configuration de l'utilisateur Hugging Face (UID 1000)
 RUN useradd -m -u 1000 user
 USER user
-ENV PATH="/home/user/.local/bin:$PATH"
+ENV HOME=/home/user \
+    PATH=/home/user/.local/bin:$PATH
 
-# 4. Définir le répertoire de travail dans le conteneur
 WORKDIR /app
 
-# 5. Installer Poetry (uniquement pour l'utilisateur courant)
+# 4. Installation de Poetry en tant qu'utilisateur
 RUN pip install --user --no-cache-dir poetry
 
-# 6. Copier les fichiers de dépendances EN PREMIER
-# (Cela permet à Docker de mettre en cache cette étape si les dépendances ne changent pas)
-COPY --chown=user:user pyproject.toml poetry.lock ./
+# 5. Copier les fichiers de dépendances
+COPY --chown=user:user pyproject.toml poetry.lock* ./
 
-# Force Poetry à créer le venv dans le dossier du projet (.venv)
-RUN poetry config virtualenvs.in-project true
+# 6. CONFIGURATION CRUCIALE POUR LES PERMISSIONS
+# On dit à Poetry de ne pas créer de venv et on force l'installation 
+# dans le dossier utilisateur avec 'pip install' piloté par Poetry
+RUN poetry config virtualenvs.create false \
+    && poetry install --no-cache-dir --without dev,test --no-root
 
-# 7. Installer UNIQUEMENT les dépendances de production (API)
-# On exclut Ydata-profiling, pytest, etc., pour avoir une image toute légère !
-RUN poetry install --without dev,test --no-root
+# 7. Copier le reste du code (src, models, etc.)
+COPY --chown=user:user . .
 
-# 8. Copier le code source et le modèle entraîné
-COPY --chown=user:user src/ ./src/
-COPY --chown=user:user models/ ./models/
-
-# 9. Exposer le port requis par Hugging Face
+# 8. Port exposé par Hugging Face
 EXPOSE 7860
 
-# 10. Commande pour démarrer l'API
-# On suppose que ton fichier s'appelle src/api.py et que l'instance FastAPI s'appelle 'app'
+# 9. Lancement de l'application
 CMD ["uvicorn", "src.app:app", "--host", "0.0.0.0", "--port", "7860"]

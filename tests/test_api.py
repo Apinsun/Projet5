@@ -1,5 +1,6 @@
 from fastapi.testclient import TestClient
 from unittest.mock import patch, MagicMock
+import pytest
 import sys
 import os
 
@@ -61,6 +62,26 @@ VALID_PAYLOAD = {
     "frequence_deplacement": "Occasionnel"
 }
 
+# Profil "Fidèle" : Salaire énorme, très heureux, promu récemment
+LOYAL_PAYLOAD = VALID_PAYLOAD.copy()
+LOYAL_PAYLOAD.update({
+    "revenu_mensuel": 15000,
+    "satisfaction_employee_environnement": 4,
+    "satisfaction_employee_nature_travail": 4,
+    "annees_depuis_la_derniere_promotion": 0
+})
+
+# Cas Limite Extrême : Le nouvel embauché (0 expérience, 0 ancienneté)
+NEW_HIRE_PAYLOAD = VALID_PAYLOAD.copy()
+NEW_HIRE_PAYLOAD.update({
+    "annee_experience_totale": 0,
+    "nombre_experiences_precedentes": 0,
+    "annees_dans_l_entreprise": 0,
+    "annees_dans_le_poste_actuel": 0,
+    "annees_depuis_la_derniere_promotion": 0,
+    "annes_sous_responsable_actuel": 0
+})
+
 # --- LES TESTS ---
 
 def test_read_root():
@@ -117,25 +138,23 @@ def test_predict_model_failure():
         assert response.status_code == 500
         assert "Erreur interne du modèle" in response.json()["detail"]
 
-def test_functional_real_model_prediction():
-    """Test 5 (Fonctionnel) : Tester le vrai pipeline ML de bout en bout (sans BDD)"""
+@pytest.mark.parametrize("payload", [VALID_PAYLOAD, LOYAL_PAYLOAD, NEW_HIRE_PAYLOAD])
+def test_functional_real_model_prediction(payload):
+    """Test 5 (Fonctionnel) : Tester le vrai pipeline ML avec différents profils"""
     # 1. On s'assure que le modèle est bien chargé par l'application
     from src.app import model
     
-    # Si le fichier model.pkl n'est pas là (ex: Github Actions sans DVC), on saute le test
+    # Si le fichier model.pkl n'est pas là, on saute le test
     if model is None:
-        import pytest
         pytest.skip("Modèle non trouvé en local, test fonctionnel ignoré.")
 
-    # 2. On lance la requête sans Mocker le modèle (on utilise le vrai !)
-    # Note : On garde le Mock de la BDD car on ne veut toujours pas écrire dans Supabase pendant les tests
-    response = client.post("/predict", json=VALID_PAYLOAD)
+    # 2. On lance la requête avec le profil passé en paramètre
+    response = client.post("/predict", json=payload)
     
     # 3. Vérifications
     assert response.status_code == 200
     json_response = response.json()
     
-    # On vérifie que les clés existent et ont un format logique
     assert "prediction" in json_response
-    assert json_response["prediction"] in [0, 1]  # Le résultat doit être 0 ou 1
-    assert 0.0 <= json_response["probabilite_depart"] <= 1.0 # La proba est entre 0 et 1
+    assert json_response["prediction"] in [0, 1] 
+    assert 0.0 <= json_response["probabilite_depart"] <= 1.0

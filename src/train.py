@@ -277,3 +277,16 @@ save_path = models_dir / "model.pkl"
 joblib.dump(final_model, save_path)
 
 print(f"Modèle sauvegardé avec succès dans : {save_path}")
+
+# --- AJOUT POUR LES TESTS CI/CD ---
+print("Création d'un échantillon de test pour la CI/CD...")
+# On prend 100 lignes au hasard de notre set de test
+sample_size = min(100, len(X_test))
+X_sample = X_test.iloc[:sample_size].copy()
+# On recolle la variable cible pour pouvoir vérifier les perfs plus tard
+X_sample['a_quitte_l_entreprise'] = y_test.iloc[:sample_size].values
+
+# Sauvegarde dans le dossier tests/
+test_data_path = project_root / "tests" / "test_sample.csv"
+X_sample.to_csv(test_data_path, index=False)
+print(f"Échantillon de test sauvegardé dans : {test_data_path}")

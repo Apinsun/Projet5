@@ -1,0 +1,101 @@
+satisfaction_employee_environnement,note_evaluation_precedente,satisfaction_employee_nature_travail,satisfaction_employee_equipe,satisfaction_employee_equilibre_pro_perso,heure_supplementaires,augementation_salaire_precedente,genre,revenu_mensuel,statut_marital,departement,poste,nombre_experiences_precedentes,annee_experience_totale,annees_dans_l_entreprise,annees_dans_le_poste_actuel,nombre_participation_pee,nb_formations_suivies,distance_domicile_travail,niveau_education,domaine_etude,frequence_deplacement,annees_depuis_la_derniere_promotion,annes_sous_responsable_actuel,a_quitte_l_entreprise
+4,3,2,3,3,Non,13 %,F,2033,Marié(e),Commercial,Représentant Commercial,1,1,1,0,1,2,13,2,Infra & Cloud,Aucun,0,0,0
+1,4,4,4,3,Non,13 %,F,2011,Marié(e),Consulting,Assistant de Direction,1,10,10,5,1,5,2,1,Infra & Cloud,Occasionnel,7,7,0
+3,2,4,3,2,Non,21 %,M,11557,Divorcé(e),Commercial,Senior Manager,9,10,5,4,1,3,7,3,Infra & Cloud,Occasionnel,0,1,0
+3,4,1,4,2,Non,14 %,M,19190,Divorcé(e),Consulting,Senior Manager,1,26,25,9,2,4,4,2,Infra & Cloud,Occasionnel,14,13,0
+4,2,3,1,2,Oui,17 %,M,3388,Marié(e),Consulting,Assistant de Direction,0,2,1,0,1,0,9,3,Transformation Digitale,Occasionnel,0,0,1
+3,3,4,4,2,Oui,15 %,F,7945,Célibataire,Consulting,Tech Lead,6,18,4,2,0,2,16,3,Infra & Cloud,Occasionnel,3,3,0
+4,2,3,3,3,Oui,14 %,M,7969,Marié(e),Consulting,Tech Lead,2,28,5,4,0,4,3,3,Transformation Digitale,Occasionnel,0,4,0
+1,2,3,4,3,Non,13 %,F,19392,Marié(e),Consulting,Senior Manager,7,21,16,12,0,2,6,3,Transformation Digitale,Occasionnel,6,14,0
+4,3,3,2,3,Non,16 %,M,6883,Marié(e),Consulting,Tech Lead,2,17,7,7,1,3,27,4,Infra & Cloud,Occasionnel,0,7,0
+2,3,3,3,1,Non,16 %,F,1514,Célibataire,Consulting,Assistant de Direction,1,0,0,0,0,4,14,3,Transformation Digitale,Aucun,0,0,0
+2,2,4,2,3,Non,12 %,F,2929,Marié(e),Consulting,Assistant de Direction,1,10,10,9,0,3,19,3,Infra & Cloud,Occasionnel,8,7,0
+3,2,3,2,3,Non,11 %,F,10686,Marié(e),Commercial,Cadre Commercial,6,13,9,4,1,4,2,4,Infra & Cloud,Occasionnel,7,0,0
+2,3,2,4,3,Non,11 %,F,4425,Célibataire,Consulting,Consultant,5,10,6,2,0,5,2,3,Transformation Digitale,Frequent,1,2,0
+1,2,4,1,3,Non,14 %,F,5468,Marié(e),Commercial,Cadre Commercial,1,13,12,7,2,3,29,4,Marketing,Occasionnel,5,7,0
+2,2,3,2,2,Non,14 %,F,2838,Célibataire,Consulting,Consultant,0,8,7,0,0,6,6,2,Transformation Digitale,Frequent,7,7,0
+3,3,2,2,2,Oui,12 %,F,2478,Célibataire,Consulting,Assistant de Direction,1,4,4,3,0,2,5,3,Infra & Cloud,Occasionnel,1,2,0
+2,4,1,3,3,Non,16 %,M,8392,Marié(e),Commercial,Cadre Commercial,1,10,10,7,1,2,1,3,Marketing,Occasionnel,0,7,0
+4,2,4,4,3,Non,18 %,M,5249,Marié(e),Commercial,Cadre Commercial,3,13,8,7,1,0,2,2,Infra & Cloud,Aucun,7,5,0
+3,2,4,2,2,Oui,24 %,F,6877,Célibataire,Consulting,Tech Lead,5,12,0,0,0,4,2,3,Transformation Digitale,Occasionnel,0,0,0
+3,1,4,4,3,Non,12 %,F,2977,Marié(e),Consulting,Assistant de Direction,1,4,4,3,1,5,1,4,Infra & Cloud,Occasionnel,1,1,0
+2,2,3,3,3,Oui,19 %,F,2800,Divorcé(e),Commercial,Représentant Commercial,6,5,3,2,3,3,1,3,Transformation Digitale,Occasionnel,0,2,1
+4,3,3,4,2,Oui,15 %,M,6179,Marié(e),Consulting,Tech Lead,1,10,10,2,2,3,22,4,Transformation Digitale,Occasionnel,6,7,1
+1,3,3,3,2,Oui,19 %,F,4477,Marié(e),Consulting,Assistant de Direction,4,7,3,2,1,2,7,3,Transformation Digitale,Occasionnel,0,2,0
+4,3,4,3,3,Oui,18 %,M,4069,Divorcé(e),Consulting,Manager,3,8,2,2,0,2,8,2,Infra & Cloud,Aucun,2,2,0
+3,3,3,4,4,Non,13 %,F,3660,Célibataire,Consulting,Assistant de Direction,3,10,8,7,0,4,10,3,Autre,Occasionnel,1,7,0
+2,2,4,2,3,Oui,11 %,F,4487,Célibataire,Commercial,Cadre Commercial,1,5,5,4,0,3,4,2,Infra & Cloud,Occasionnel,1,3,0
+2,3,2,2,2,Non,22 %,M,2766,Divorcé(e),Consulting,Consultant,8,7,5,3,3,6,12,3,Transformation Digitale,Occasionnel,0,4,0
+1,1,4,4,3,Non,15 %,M,10650,Célibataire,Consulting,Tech Lead,2,18,4,2,0,2,8,4,Infra & Cloud,Frequent,0,3,1
+4,3,4,2,3,Non,13 %,M,7823,Divorcé(e),Commercial,Cadre Commercial,6,12,10,9,1,2,3,4,Infra & Cloud,Occasionnel,0,8,0
+2,3,3,4,3,Non,12 %,F,19545,Marié(e),Consulting,Directeur Technique,1,23,22,15,0,0,12,3,Entrepreunariat,Occasionnel,15,8,1
+2,4,1,4,3,Non,11 %,M,5208,Marié(e),Consulting,Assistant de Direction,1,16,16,15,0,2,18,5,Infra & Cloud,Occasionnel,1,10,0
+4,4,2,3,2,Non,11 %,M,2559,Célibataire,Consulting,Consultant,5,7,1,0,0,4,2,2,Entrepreunariat,Occasionnel,0,0,0
+2,2,3,4,3,Non,14 %,F,2274,Célibataire,Consulting,Assistant de Direction,1,1,1,0,0,3,2,3,Infra & Cloud,Occasionnel,0,0,0
+4,2,2,2,3,Non,17 %,M,13120,Marié(e),Commercial,Cadre Commercial,6,22,9,8,1,3,8,4,Entrepreunariat,Occasionnel,2,3,0
+2,3,2,2,3,Non,14 %,M,2008,Divorcé(e),Consulting,Consultant,1,1,1,0,2,3,10,3,Infra & Cloud,Occasionnel,1,0,0
+1,3,1,1,3,Oui,11 %,M,3348,Célibataire,Consulting,Assistant de Direction,1,10,10,8,0,3,3,3,Infra & Cloud,Frequent,9,7,1
+1,3,3,1,4,Non,13 %,M,13664,Célibataire,Consulting,Directeur Technique,4,16,5,2,0,3,7,4,Transformation Digitale,Occasionnel,0,2,0
+4,3,4,1,3,Non,14 %,M,4105,Célibataire,Commercial,Cadre Commercial,1,7,7,7,0,5,9,3,Marketing,Occasionnel,0,7,0
+3,3,3,1,2,Non,13 %,M,3491,Divorcé(e),Consulting,Consultant,1,10,10,7,3,4,7,4,Infra & Cloud,Occasionnel,8,9,0
+3,2,1,1,3,Oui,22 %,M,2321,Célibataire,Consulting,Assistant de Direction,0,4,3,2,0,0,9,2,Transformation Digitale,Aucun,1,2,1
+4,3,2,3,3,Non,18 %,F,13734,Célibataire,Consulting,Manager,3,21,7,7,0,6,3,3,Transformation Digitale,Occasionnel,1,0,0
+4,3,2,4,3,Non,22 %,M,3597,Célibataire,Consulting,Consultant,8,6,4,3,0,2,24,3,Transformation Digitale,Occasionnel,1,2,0
+4,3,4,3,3,Oui,22 %,F,16064,Marié(e),Commercial,Senior Manager,5,22,17,13,1,3,16,3,Marketing,Occasionnel,1,9,0
+4,2,1,3,3,Non,16 %,F,5380,Marié(e),Commercial,Cadre Commercial,4,6,0,0,1,3,11,5,Marketing,Occasionnel,0,0,0
+2,2,2,2,2,Non,12 %,M,2141,Marié(e),Consulting,Assistant de Direction,1,6,6,4,1,3,7,3,Transformation Digitale,Occasionnel,1,1,0
+3,3,4,4,3,Oui,13 %,M,9713,Marié(e),Commercial,Cadre Commercial,2,9,5,3,3,3,4,3,Infra & Cloud,Occasionnel,1,0,0
+3,3,2,3,1,Non,13 %,F,3295,Célibataire,Consulting,Consultant,1,3,3,2,0,3,4,1,Transformation Digitale,Occasionnel,1,2,0
+1,2,4,3,4,Oui,14 %,M,4930,Célibataire,Consulting,Assistant de Direction,0,6,5,4,0,2,2,4,Transformation Digitale,Frequent,1,4,0
+3,3,3,3,3,Non,14 %,F,2232,Divorcé(e),Consulting,Consultant,7,7,3,2,3,1,1,4,Transformation Digitale,Occasionnel,1,2,0
+2,3,4,4,3,Non,16 %,M,5253,Célibataire,Commercial,Cadre Commercial,1,7,7,5,0,1,9,4,Infra & Cloud,Occasionnel,0,7,0
+4,3,1,1,3,Non,14 %,M,4373,Marié(e),Commercial,Cadre Commercial,0,5,4,3,2,2,7,3,Transformation Digitale,Frequent,0,3,0
+3,4,4,1,3,Non,18 %,M,2544,Marié(e),Consulting,Consultant,0,8,7,7,1,3,6,3,Autre,Frequent,7,7,0
+1,3,4,3,3,Non,11 %,F,5343,Marié(e),Commercial,Cadre Commercial,1,10,10,7,1,1,10,2,Infra & Cloud,Occasionnel,1,9,0
+2,2,3,1,3,Non,23 %,F,2430,Marié(e),Commercial,Représentant Commercial,0,6,5,3,2,5,28,4,Infra & Cloud,Occasionnel,4,2,0
+4,4,3,3,3,Non,13 %,F,2506,Célibataire,Consulting,Assistant de Direction,3,7,2,2,0,0,1,4,Infra & Cloud,Occasionnel,2,2,0
+4,4,4,1,3,Non,17 %,M,4680,Célibataire,Consulting,Assistant de Direction,3,4,1,0,0,2,10,2,Infra & Cloud,Occasionnel,0,0,0
+2,3,3,3,3,Non,15 %,F,13237,Célibataire,Consulting,Tech Lead,7,22,20,6,0,3,6,3,Infra & Cloud,Occasionnel,5,13,0
+2,1,3,3,3,Oui,11 %,F,4559,Marié(e),Commercial,Cadre Commercial,3,4,2,2,1,2,20,3,Infra & Cloud,Occasionnel,2,2,1
+2,3,3,1,2,Non,12 %,F,4335,Marié(e),Consulting,Manager,4,11,8,7,1,3,27,3,Transformation Digitale,Occasionnel,1,1,0
+3,2,4,4,3,Non,17 %,F,5171,Célibataire,Commercial,Cadre Commercial,5,13,6,1,0,2,3,3,Infra & Cloud,Occasionnel,0,5,0
+4,3,4,3,2,Non,12 %,M,9204,Marié(e),Commercial,Cadre Commercial,4,7,4,3,1,3,7,5,Marketing,Occasionnel,0,3,0
+2,4,2,4,3,Non,18 %,M,2028,Marié(e),Consulting,Consultant,1,14,14,11,3,6,21,3,Transformation Digitale,Occasionnel,2,13,0
+4,3,2,4,2,Non,16 %,F,2279,Célibataire,Consulting,Assistant de Direction,1,7,7,7,0,2,9,3,Transformation Digitale,Occasionnel,0,3,0
+1,3,3,3,2,Non,13 %,M,2438,Célibataire,Consulting,Assistant de Direction,4,7,3,2,0,2,9,3,Infra & Cloud,Aucun,1,2,0
+2,4,3,1,4,Non,12 %,M,4404,Marié(e),Consulting,Consultant,2,6,4,3,0,3,8,3,Transformation Digitale,Occasionnel,1,2,0
+3,3,2,3,2,Non,13 %,M,4071,Divorcé(e),Ressources Humaines,Ressources Humaines,2,19,10,0,0,4,8,2,Autre,Occasionnel,4,7,0
+2,2,2,3,3,Non,13 %,M,6499,Célibataire,Consulting,Tech Lead,1,6,6,5,0,3,11,3,Infra & Cloud,Frequent,0,3,0
+4,3,2,3,3,Oui,11 %,F,2148,Marié(e),Ressources Humaines,Ressources Humaines,0,6,5,1,0,3,20,2,Transformation Digitale,Occasionnel,1,4,1
+2,4,3,1,2,Oui,12 %,M,2127,Marié(e),Consulting,Assistant de Direction,2,7,4,2,0,5,5,5,Transformation Digitale,Occasionnel,0,3,0
+3,3,1,3,3,Non,12 %,F,2827,Divorcé(e),Commercial,Représentant Commercial,1,1,1,0,3,3,2,1,Infra & Cloud,Aucun,0,0,0
+3,3,4,3,3,Oui,16 %,F,8837,Célibataire,Ressources Humaines,Ressources Humaines,1,9,9,0,0,2,26,4,Infra & Cloud,Occasionnel,1,7,0
+4,2,3,3,4,Non,14 %,F,5902,Marié(e),Commercial,Cadre Commercial,4,17,15,11,1,1,4,4,Infra & Cloud,Occasionnel,5,9,0
+4,3,4,4,2,Non,12 %,M,10512,Célibataire,Consulting,Tech Lead,6,25,9,7,0,6,18,4,Transformation Digitale,Occasionnel,5,4,0
+4,3,3,3,3,Non,17 %,F,2974,Marié(e),Consulting,Consultant,9,9,5,3,1,2,9,4,Transformation Digitale,Occasionnel,1,2,0
+3,2,2,3,3,Non,15 %,F,4505,Divorcé(e),Consulting,Assistant de Direction,6,12,1,0,1,3,6,4,Infra & Cloud,Occasionnel,0,0,0
+2,2,4,4,2,Non,13 %,F,5906,Marié(e),Consulting,Tech Lead,0,10,9,8,2,2,25,2,Infra & Cloud,Occasionnel,3,8,0
+3,3,2,2,3,Non,14 %,M,10466,Divorcé(e),Consulting,Manager,3,29,8,7,2,3,7,4,Infra & Cloud,Occasionnel,0,7,0
+1,3,3,3,2,Non,12 %,M,10609,Divorcé(e),Commercial,Cadre Commercial,0,17,16,10,2,6,3,3,Infra & Cloud,Occasionnel,5,13,0
+2,3,3,1,3,Non,11 %,M,4197,Divorcé(e),Consulting,Consultant,1,10,10,8,1,2,20,3,Infra & Cloud,Occasionnel,0,2,0
+3,3,1,3,3,Non,11 %,M,3072,Divorcé(e),Consulting,Consultant,1,12,12,9,2,4,9,3,Transformation Digitale,Aucun,6,10,0
+4,3,2,4,2,Non,15 %,F,5147,Célibataire,Commercial,Cadre Commercial,8,13,11,7,0,2,2,3,Marketing,Aucun,1,7,0
+1,3,1,2,3,Oui,14 %,M,2042,Marié(e),Consulting,Assistant de Direction,6,6,3,2,1,2,2,3,Infra & Cloud,Frequent,1,2,1
+4,3,4,4,2,Non,12 %,F,10312,Marié(e),Consulting,Manager,1,40,40,10,1,3,23,4,Transformation Digitale,Occasionnel,15,6,1
+3,3,3,4,2,Non,11 %,F,19094,Divorcé(e),Consulting,Senior Manager,4,26,14,13,1,3,5,3,Autre,Occasionnel,4,8,0
+1,4,3,2,2,Non,14 %,F,6500,Célibataire,Commercial,Cadre Commercial,0,9,8,7,0,5,2,2,Transformation Digitale,Occasionnel,0,7,0
+2,3,1,2,3,Oui,16 %,F,6516,Marié(e),Consulting,Tech Lead,2,18,1,0,1,3,8,2,Infra & Cloud,Occasionnel,0,0,0
+3,3,3,3,3,Non,19 %,F,9824,Marié(e),Consulting,Manager,3,18,1,0,1,4,10,3,Transformation Digitale,Occasionnel,0,0,0
+2,2,1,4,3,Non,14 %,M,10482,Marié(e),Ressources Humaines,Ressources Humaines,9,24,20,6,1,1,1,2,Transformation Digitale,Occasionnel,3,6,1
+1,2,3,1,3,Oui,17 %,F,6811,Célibataire,Consulting,Manager,2,10,8,7,0,3,2,4,Autre,Aucun,0,7,0
+3,1,4,3,2,Non,14 %,M,9525,Divorcé(e),Commercial,Cadre Commercial,1,6,6,3,2,2,1,4,Transformation Digitale,Frequent,1,3,0
+2,3,1,3,3,Non,25 %,F,10453,Divorcé(e),Commercial,Cadre Commercial,1,24,24,13,3,2,1,2,Marketing,Occasionnel,15,7,0
+3,2,3,1,3,Non,14 %,M,19999,Marié(e),Consulting,Senior Manager,0,34,33,18,1,5,1,4,Infra & Cloud,Occasionnel,11,9,0
+3,1,4,4,3,Oui,14 %,M,1118,Célibataire,Commercial,Représentant Commercial,1,1,1,0,0,4,24,1,Infra & Cloud,Frequent,1,0,1
+3,3,4,2,3,Non,15 %,F,2157,Marié(e),Commercial,Représentant Commercial,1,3,3,1,1,5,20,3,Entrepreunariat,Frequent,0,2,0
+4,3,2,3,2,Non,11 %,F,2789,Divorcé(e),Commercial,Représentant Commercial,1,2,2,2,1,5,5,3,Marketing,Frequent,2,2,0
+1,2,1,1,3,Non,12 %,M,4400,Marié(e),Commercial,Représentant Commercial,3,6,3,2,0,2,9,2,Infra & Cloud,Occasionnel,2,2,1
+1,3,4,3,3,Oui,13 %,F,3760,Célibataire,Consulting,Assistant de Direction,1,6,6,3,0,2,2,1,Entrepreunariat,Frequent,1,3,0
+3,3,3,4,2,Non,14 %,M,2058,Célibataire,Consulting,Assistant de Direction,0,7,6,2,0,1,1,3,Entrepreunariat,Occasionnel,1,5,1
+1,3,3,2,2,Oui,22 %,F,4907,Divorcé(e),Commercial,Cadre Commercial,0,6,5,3,1,3,8,2,Autre,Occasionnel,0,4,0
+3,3,3,2,3,Oui,11 %,M,4249,Célibataire,Consulting,Assistant de Direction,1,9,9,6,0,3,4,4,Infra & Cloud,Frequent,1,1,0

@@ -1,10 +1,18 @@
-name: CI API ML
+name: CI/CD Pipeline API ML
 
+# 1. QUAND DECLENCHER LE PIPELINE ?
 on:
   push:
-    branches: [ "main", "feature/*" ]
+    # Se lance quand tu pousses sur main ou sur tes branches de développement
+    branches: [ "main", "feature/**" ]
+  pull_request:
+    # Répond à l'exigence : "Une validation avant fusion de branches"
+    branches: [ "main" ]
 
 jobs:
+  # ==========================================
+  # ENVIRONNEMENT DE TEST (Intégration Continue)
+  # ==========================================
   test:
     runs-on: ubuntu-latest
     steps:
@@ -24,9 +32,29 @@ jobs:
       - name: Install dependencies
         run: poetry install
 
-      # C'est cette commande qui va lancer tests/test_api.py
       - name: Run tests
-        # On dit à Python : "Rajoute le dossier courant (.) à ta liste de recherche"
         run: |
           export PYTHONPATH=$PYTHONPATH:.
           poetry run pytest
+
+  # ==========================================
+  # ENVIRONNEMENT DE PROD (Déploiement Continu)
+  # ==========================================
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test # DÉPENDANCE : Attend que le job 'test' soit terminé et réussi
+    if: github.ref == 'refs/heads/main' # SÉCURITÉ : Ne s'exécute QUE sur la branche main
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: true
+          
+      - name: Push to Hugging Face
+        # Assure-toi d'avoir créé un secret HF_TOKEN dans les settings de ton repo GitHub
+        env:
+          HF_TOKEN: ${{ secrets.HUGGINFACETOKEN }}
+        run: |
+          git remote add space https://apinsun:$HF_TOKEN@huggingface.co/spaces/apinsun/Projet5
+          git push --force space main

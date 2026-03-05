@@ -63,6 +63,18 @@ VALID_PAYLOAD = {
 
 # --- LES TESTS ---
 
+def test_read_root():
+    """Test 0 : Vérifier que l'API est bien en ligne sur la racine"""
+    response = client.get("/")
+    
+    # On vérifie que la requête réussit (Code 200)
+    assert response.status_code == 200
+    
+    # On vérifie que le message de bienvenue est bien là
+    json_response = response.json()
+    assert "message" in json_response
+    assert "Bienvenue sur l'API" in json_response["message"]
+
 def test_predict_endpoint_works():
     """Test 1 : Tout se passe bien (Prédiction + Mock BDD)"""
     with patch("src.app.model", DummyModel()):
@@ -104,3 +116,26 @@ def test_predict_model_failure():
         # On s'attend à notre erreur 500 configurée dans le bloc 'except'
         assert response.status_code == 500
         assert "Erreur interne du modèle" in response.json()["detail"]
+
+def test_functional_real_model_prediction():
+    """Test 5 (Fonctionnel) : Tester le vrai pipeline ML de bout en bout (sans BDD)"""
+    # 1. On s'assure que le modèle est bien chargé par l'application
+    from src.app import model
+    
+    # Si le fichier model.pkl n'est pas là (ex: Github Actions sans DVC), on saute le test
+    if model is None:
+        import pytest
+        pytest.skip("Modèle non trouvé en local, test fonctionnel ignoré.")
+
+    # 2. On lance la requête sans Mocker le modèle (on utilise le vrai !)
+    # Note : On garde le Mock de la BDD car on ne veut toujours pas écrire dans Supabase pendant les tests
+    response = client.post("/predict", json=VALID_PAYLOAD)
+    
+    # 3. Vérifications
+    assert response.status_code == 200
+    json_response = response.json()
+    
+    # On vérifie que les clés existent et ont un format logique
+    assert "prediction" in json_response
+    assert json_response["prediction"] in [0, 1]  # Le résultat doit être 0 ou 1
+    assert 0.0 <= json_response["probabilite_depart"] <= 1.0 # La proba est entre 0 et 1

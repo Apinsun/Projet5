@@ -1,0 +1,11 @@
+site_name: Documentation - Projet Turnover ML
+theme:
+  name: material
+  palette:
+    primary: indigo
+
+nav:
+  - Accueil & Architecture: index.md
+  - Documentation de l'API: api.md
+  - Modèle & Performances: modele.md
+  - Maintenance & CI/CD: maintenance.md

@@ -4,7 +4,7 @@ import joblib
 import pandas as pd
 import os
 from pathlib import Path
-import sys  # <--- Ajoute cet import
+import sys  
 
 from sqlalchemy import create_engine, Column, Integer, Float, DateTime, JSON
 from sqlalchemy.orm import sessionmaker, declarative_base, Session

@@ -89,3 +89,24 @@ if reponse.status_code == 200:
 else:
     print(f"Erreur {reponse.status_code} : {reponse.text}")'
 ```
+
+## 🧠 3. Modèle ML : Performances et Maintenance
+
+### Performances du Modèle
+Le modèle principal est un `RandomForestClassifier` optimisé avec une gestion du déséquilibre des classes (`class_weight='balanced_subsample'`).
+* **Métrique d'optimisation :** F1-Score (choisi pour équilibrer la précision et le rappel sur une cible RH déséquilibrée).
+* **F1-Score (Test) :** 0.57
+* **Seuil de décision optimal :** 0.32 (Abaissé par rapport au 0.5 par défaut pour limiter les "oublis" et maximiser la détection des employés sur le départ).
+
+### Maintenance et Protocole de Mise à Jour (Data Drift)
+Pour garantir la fiabilité du modèle dans le temps face à l'évolution de l'entreprise :
+1. **Monitoring :** Chaque prédiction est journalisée dans la base de données Supabase.
+2. **Évaluation trimestrielle :** Les prédictions sont croisées avec les départs réels.
+3. **Ré-entraînement :** Si le F1-Score chute de plus de 10 % en production, un ré-entraînement automatique est déclenché sur les données récentes.
+4. **Tests CI/CD :** Le nouveau modèle doit valider le test de non-régression (`tests/test_model.py`) sur un échantillon de référence avant tout déploiement.
+
+## 📚 4. Documentation Technique Complète
+
+Pour une plongée approfondie dans l'architecture, la construction du modèle et le pipeline de déploiement, consultez notre documentation technique complète générée avec **MkDocs** :
+
+👉 **https://github.com/Apinsun/Projet5/tree/main/docs**

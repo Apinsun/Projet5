@@ -289,4 +289,4 @@ X_sample['a_quitte_l_entreprise'] = y_test.iloc[:sample_size].values
 # Sauvegarde dans le dossier tests/
 test_data_path = project_root / "tests" / "test_sample.csv"
 X_sample.to_csv(test_data_path, index=False)
-print(f"Échantillon de test sauvegardé dans : {test_data_path}")
+print(f"Échantillon de test sauvegardé dans : {test_data_path}")    

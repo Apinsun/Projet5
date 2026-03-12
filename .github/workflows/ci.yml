@@ -51,10 +51,29 @@ jobs:
           fetch-depth: 0
           lfs: true
           
+      # - name: Push to Hugging Face
+      #   # Assure-toi d'avoir créé un secret HF_TOKEN dans les settings de ton repo GitHub
+      #   env:
+      #     HF_TOKEN: ${{ secrets.HUGGINFACETOKEN }}
+      #   run: |
+      #     git remote add space https://apinsun:$HF_TOKEN@huggingface.co/spaces/apinsun/Projet5
+      #     git push --force space main
       - name: Push to Hugging Face
-        # Assure-toi d'avoir créé un secret HF_TOKEN dans les settings de ton repo GitHub
         env:
           HF_TOKEN: ${{ secrets.HUGGINFACETOKEN }}
         run: |
+          # 1. On supprime l'historique Git (qui contient les anciens fichiers bloquants)
+          rm -rf .git
+          
+          # 2. On initialise un nouveau dépôt Git vierge sur la branche main
+          git init -b main
+          git config user.name "GitHub Actions Deployer"
+          git config user.email "actions@github.com"
+          
+          # 3. On ajoute uniquement les fichiers présents actuellement
+          git add .
+          git commit -m "Déploiement propre vers Hugging Face"
+          
+          # 4. On force l'envoi de ce dépôt tout neuf vers Hugging Face
           git remote add space https://apinsun:$HF_TOKEN@huggingface.co/spaces/apinsun/Projet5
           git push --force space main

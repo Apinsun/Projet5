@@ -8,3 +8,7 @@ env/
 
 # --- IGNORER LE .env ---
 .env
+
+# Ignorer les fichiers de présentation
+presentation.odp
+presentation.pdf
